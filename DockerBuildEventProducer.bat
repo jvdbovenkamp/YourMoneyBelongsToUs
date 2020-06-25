@@ -1,0 +1,1 @@
+docker build -f "./EventProducer/DockerFile" -t eventproducer:dev --target final "."

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EventProducer": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

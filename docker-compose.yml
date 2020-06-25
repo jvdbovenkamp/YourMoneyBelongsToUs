@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmquser
+      - RABBITMQ_DEFAULT_PASS=5sdF=VKRnYU53TMT
+
+  sqlserver:
+    image: microsoft/mssql-server-linux:latest
+    container_name: sqlserver
+    volumes:
+      - sqlserverdata:/var/opt/mssql 
+    ports:
+      - "1434:1433"
+    environment:
+      - ACCEPT_EULA=Y 
+      - MSSQL_PID=Developer
+      - SA_PASSWORD=QtX6vnD3AB@Dm^Kz
+
+  eventconsumer:
+    image: ${DOCKER_REGISTRY-}eventconsumer
+    build:
+      context: .
+      dockerfile: EventConsumer/Dockerfile
+
+  eventproducer:
+    image: ${DOCKER_REGISTRY-}eventproducer
+    build:
+      context: .
+      dockerfile: EventProducer/Dockerfile
+
+volumes:
+  sqlserverdata:
+    external: true    
+  rabbitmqdata:
+    external: true

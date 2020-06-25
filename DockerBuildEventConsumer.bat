@@ -1,0 +1,1 @@
+docker build -f "./EventConsumer/DockerFile" -t eventconsumer:dev --target final "."
