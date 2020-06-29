@@ -17,7 +17,8 @@ namespace EventProducer
 
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(1000);
+            // fix below code. Use polly. starting docker compose with SQL/rabbitmq takes some time
+            System.Threading.Thread.Sleep(10000);
             Task.Run(async () =>
             {
                 var serviceProvider = (new ServiceCollection() as IServiceCollection)
